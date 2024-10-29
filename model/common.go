@@ -7,7 +7,7 @@ type Coords struct {
 
 type ObjectState int
 
-const(
+const (
 	ObjNotExists ObjectState = iota
 	ObjIdle
 	ObjDead
@@ -17,7 +17,20 @@ const(
 
 type ObjectType int
 
-const(
+const (
 	ObjStatic ObjectType = iota
-	ObjKillable 
+	ObjKillable
 )
+
+type VisibleSquare struct {
+	Length int32
+	Square []byte
+}
+
+func CalcVisible(in *VisibleSquare) *VisibleSquare {
+	mask := new(VisibleSquare)
+	mask.Length = in.Length
+	mask.Square = make([]byte, mask.Length*mask.Length)
+
+	return mask
+}
